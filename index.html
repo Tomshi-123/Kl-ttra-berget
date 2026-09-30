@@ -112,8 +112,8 @@ function pointAt(step) { return ridge.getPointAtLength(len * step / TOTAL); }
 
 const flagColors = ["#27ae60", "#f39c12", "#c0392b"];
 const flagData = [
-  { step: 10, label: "Hundrakompisar" },
-  { step: 20, label: "Tusenkompisar" },
+  { step: 10, label: "Tiokompisar" },
+  { step: 20, label: "Hundrakompisar" },
   { step: 30, label: "MÅL" }
 ];
 
@@ -135,9 +135,9 @@ function moveClimber(step) {
 }
 
 const levels = [
+  { name: "Tiokompisar", target: 10, make: () => Math.floor(Math.random() * 9) + 1 },
   { name: "Hundrakompisar", target: 100, make: () => (Math.floor(Math.random() * 9) + 1) * 10 },
-  { name: "Tusenkompisar", target: 1000, make: () => (Math.floor(Math.random() * 9) + 1) * 100 },
-  { name: "MÅL", target: 1000, make: () => (Math.floor(Math.random() * 9) + 1) * 100 }
+  { name: "Tusenkompisar", target: 1000, make: () => (Math.floor(Math.random() * 9) + 1) * 100 }
 ];
 
 let step, current, startTime, timerId;
@@ -162,9 +162,9 @@ function check() {
     step++; moveClimber(step);
     $("feedback").style.color = "#27ae60";
     if (step === 10) {
-      $("feedback").textContent = "Hundrakompisar avklarat! 🚩";
+      $("feedback").textContent = "Tiokompisar avklarat! 🚩";
     } else if (step === 20) {
-      $("feedback").textContent = "Tusenkompisar avklarat! 🚩";
+      $("feedback").textContent = "Hundrakompisar avklarat! 🚩";
     } else if (step >= TOTAL) {
       return finish();
     } else {
