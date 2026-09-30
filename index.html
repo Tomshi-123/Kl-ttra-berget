@@ -110,10 +110,11 @@ const ridge = document.getElementById("ridge");
 const len = ridge.getTotalLength();
 function pointAt(step) { return ridge.getPointAtLength(len * step / TOTAL); }
 
-const flagColors = ["#27ae60", "#f39c12", "#c0392b"];
+const flagColors = ["#27ae60", "#f39c12", "#3498db", "#c0392b"];
 const flagData = [
-  { step: 10, label: "Tiokompisar" },
-  { step: 20, label: "Hundrakompisar" },
+  { step: 0, label: "Tiokompisar" },
+  { step: 10, label: "Hundrakompisar" },
+  { step: 20, label: "Tusenkompisar" },
   { step: 30, label: "MÅL" }
 ];
 
@@ -150,7 +151,7 @@ function newQuestion() {
   const lvl = levels[lvlIndex];
   current = { a: lvl.make(), target: lvl.target };
   $("level").textContent = lvl.name;
-  $("progress").textContent = `Fråga ${step % 10 + 1} av 10 · Totalt ${step}/${TOTAL}`;
+  $("progress").textContent = `Fråga ${(step % 10) + 1} av 10 · Totalt ${step}/${TOTAL}`;
   $("question").textContent = `${current.a} + ? = ${current.target}`;
   $("answer").value = ""; $("answer").focus();
 }
@@ -165,8 +166,8 @@ function check() {
       $("feedback").textContent = "Tiokompisar avklarat! 🚩";
     } else if (step === 20) {
       $("feedback").textContent = "Hundrakompisar avklarat! 🚩";
-    } else if (step >= TOTAL) {
-      return finish();
+    } else if (step === 30) {
+      $("feedback").textContent = "Tusenkompisar / Mål nått! 🏔️";
     } else {
       $("feedback").textContent = "Rätt! ⛏️";
     }
